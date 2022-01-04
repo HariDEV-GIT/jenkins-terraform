@@ -14,14 +14,14 @@ resource "aws_security_group" "my_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
- ingress {
+  ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
- # outbound from jenkis server
+  # outbound from jenkis server
   egress {
     from_port   = 0
     to_port     = 65535
@@ -29,17 +29,17 @@ resource "aws_security_group" "my_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags= {
+  tags = {
     Name = var.security_group
   }
 }
 
 # Create AWS ec2 instance
 resource "aws_instance" "myFirstInstance" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
-  security_groups= [var.security_group]
-  tags= {
+  ami             = var.ami_id
+  instance_type     = var.instance_type
+  security_groups     = [var.security_group]
+  tags = {
     Name = var.tag_name
   }
 }
