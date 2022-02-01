@@ -24,7 +24,12 @@ pipeline {
         }
         stage ("terraform format check") {
             steps {
-                sh 'terraform fmt'
+                sh('''
+                    terraform fmt
+                    git add .
+                    git commit -m "Terraform fmt by Jenkins"
+                    git push
+                ''')
             }
         }        
         stage ("terrafrom plan") {
