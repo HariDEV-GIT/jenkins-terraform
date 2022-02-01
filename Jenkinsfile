@@ -22,7 +22,7 @@ pipeline {
                 sh 'terraform validate'
             }
         }
-        stage ("terraform format check") {
+       /* stage ("terraform format check") {
             steps {
                 sh('''
                     terraform fmt
@@ -33,7 +33,7 @@ pipeline {
                     git push origin main
                 ''')
             }
-        }        
+        }*/      
         stage ("terrafrom plan") {
             steps {
                 sh 'terraform plan '
