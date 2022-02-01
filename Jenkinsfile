@@ -26,9 +26,11 @@ pipeline {
             steps {
                 sh('''
                     terraform fmt
-                    git add .
+                    git add *.tf
                     git commit -m "Terraform fmt by Jenkins"
-                    git push
+                    git config --global user.name "HariDEV-GIT"
+                    git config --global user.email "harimadhan07@gmail.com"
+                    git push origin main
                 ''')
             }
         }        
