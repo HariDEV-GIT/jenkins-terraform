@@ -22,6 +22,11 @@ pipeline {
                 sh 'terraform validate'
             }
         }
+        stage ("terraform format check") {
+            steps {
+                sh 'terraform fmt'
+            }
+        }        
        /* stage ("terraform format check") {
             steps {
                 sh('''
