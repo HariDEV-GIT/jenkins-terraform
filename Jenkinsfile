@@ -12,16 +12,6 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/HariDEV-GIT/jenkins-terraform.git'
             }
         }
-        stage ("terraform init") {
-            steps {
-                sh 'terraform init'
-            }
-        }
-        stage ("terraform validate") {
-            steps {
-                sh 'terraform validate'
-            }
-        }
         stage ("terraform format check") {
             steps {
                 sh('''#!/bin/bash
@@ -33,6 +23,16 @@ pipeline {
                     git status
                     git push origin $BRANCH_NAME
                 ''')
+            }
+        }     
+        stage ("terraform init") {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        stage ("terraform validate") {
+            steps {
+                sh 'terraform validate'
             }
         }
         stage ("terrafrom plan") {
