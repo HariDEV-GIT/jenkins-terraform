@@ -22,18 +22,19 @@ pipeline {
                 sh 'terraform validate'
             }
         }
-       /* stage ("terraform format check") {
+        stage ("terraform format check") {
             steps {
-                sh('''
-                    terraform fmt
+                sh('''#!/bin/bash
+                    ./terraform fmt
+                    git status
+                    git checkout $BRANCH_NAME
                     git add *.tf
                     git commit -m "Terraform fmt by Jenkins"
-                    git config --global user.name "HariDEV-GIT"
-                    git config --global user.email "harimadhan07@gmail.com"
-                    git push origin main
+                    git status
+                    git push origin $BRANCH_NAME
                 ''')
             }
-        }*/      
+        }
         stage ("terrafrom plan") {
             steps {
                 sh 'terraform plan '
