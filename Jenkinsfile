@@ -12,19 +12,18 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/HariDEV-GIT/jenkins-terraform.git'
             }
         }
-        /*stage ("terraform format check") {
+        stage ("terraform format check") {
             steps {
                 sh('''#!/bin/bash
                     ./terraform fmt
                     git status
-                    git checkout $BRANCH_NAME
                     git add *.tf
                     git commit -m "Terraform fmt by Jenkins"
                     git status
                     git push origin $BRANCH_NAME
                 ''')
             }
-        }  */   
+        }   
         stage ("terraform init") {
             steps {
                 sh 'terraform init'
