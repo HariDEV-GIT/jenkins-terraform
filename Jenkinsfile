@@ -14,12 +14,15 @@ pipeline {
         }
         stage ("terraform format check") {
             steps {
-                sh('''#!/bin/bash
-                    ./terraform fmt
+                sh('''
+                    terraform fmt
                     git status
+                    echo $BRANCH_NAME
+                    git checkout $BRANCH_NAME
                     git add *.tf
-                    git commit -m "Terraform fmt by Jenkins"
+                    git commit -am "Terraform fmt by Jenkins"
                     git status
+                    git config --local user.name "jenkins local user"
                     git push origin $BRANCH_NAME
                 ''')
             }
