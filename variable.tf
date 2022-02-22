@@ -10,7 +10,7 @@ variable "instance_type" {
 
 variable "security_group" {
   description = "Name of security group"
-  default     = "my-jenkins"
+  default     = "my-jenkins-123"
 }
 
 variable "tag_name" {
