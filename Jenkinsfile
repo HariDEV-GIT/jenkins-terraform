@@ -6,6 +6,7 @@ pipeline {
         password(name: 'BITBUCKET_PASSWORD', defaultValue: '', description: 'Bitbucket Password')
         string(name: 'FEATURE_BRANCH', defaultValue: '', description: 'Provide your feature branch name for downgrade')
         string(name: 'REVISES_ID', defaultValue: '', description: 'Revises ID for downgrade')
+        file(name:'secret_file', description:'contains list secret file credential')
         credentials(name: 'DB_ADMIN_FILE', defaultValue: '', description: 'upload dev.secret.ini file', credentialType: "Secret file", required: true)
     }    
     options {
