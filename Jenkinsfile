@@ -1,7 +1,12 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'Greeting', defaultValue: '', description: 'How should I greet the world?')
+        choice(name: 'ENVIRONNMENT', choices: ['dev', 'sit', 'prd'], description: 'Source brnach')
+        string(name: 'BITBUCKET_USERNAME', defaultValue: '', description: 'Bitbucket Username')
+        password(name: 'BITBUCKET_PASSWORD', defaultValue: '', description: 'Bitbucket Password')
+        string(name: 'FEATURE_BRANCH', defaultValue: '', description: 'Provide your feature branch name for downgrade')
+        string(name: 'REVISES_ID', defaultValue: '', description: 'Revises ID for downgrade')
+        credentials(name: 'DB_ADMIN_FILE', defaultValue: '', description: 'upload dev.secret.ini file', credentialType: "Secret file", required: true)
     }    
     options {
         disableConcurrentBuilds()
