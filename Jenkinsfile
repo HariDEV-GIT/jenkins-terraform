@@ -34,14 +34,8 @@ pipeline {
             }
         }*/  
         stage ("terraform init") {
-            stage ("testing") {
-                stages ("dev") {
-                    stage ("down") {
-                       steps {
-                          sh 'terraform init'
-                       }
-                    }    
-                }
+            steps {
+                sh 'terraform init'
             }
         }    
         stage ("terraform validate") {
