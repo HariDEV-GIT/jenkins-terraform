@@ -1,11 +1,5 @@
 pipeline {
-    agent any
-    parameters {
-        choice(name: 'ENVIRONNMENT', choices: ['dev', 'sit', 'prd'], description: 'Source brnach')
-        string(name: 'FEATURE_BRANCH', defaultValue: '', description: 'Provide your feature branch name for downgrade')
-        string(name: 'REVISES_ID', defaultValue: '', description: 'Revises ID for downgrade')
-        file(name:'secret_file', description:'contains list secret file credential')
-    }    
+    agent any    
     options {
         disableConcurrentBuilds()
     }
@@ -18,7 +12,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/HariDEV-GIT/jenkins-terraform.git'
             }
         }
-        /*stage ("terraform format check") {
+        stage ("terraform format check") {
             steps {
                 sh('''
                     terraform fmt
@@ -28,11 +22,11 @@ pipeline {
                     git add *.tf
                     git commit -am "Terraform fmt by Jenkins"
                     git status
-                    git config --local user.name "jenkins local user"
+              //      git config --local user.name "jenkins local user"
                     git push origin $BRANCH_NAME
                 ''')
             }
-        }*/  
+        }
         stage ("terraform init") {
             steps {
                 sh 'terraform init'
