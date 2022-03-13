@@ -22,7 +22,6 @@ pipeline {
                     git add *.tf
                     git commit -am "Terraform fmt by Jenkins"
                     git status
-              //      git config --local user.name "jenkins local user"
                     git push origin $BRANCH_NAME
                 ''')
             }
