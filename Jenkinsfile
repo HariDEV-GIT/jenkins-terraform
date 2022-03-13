@@ -22,8 +22,8 @@ pipeline {
                     git add *.tf
                     git commit -am "Terraform fmt by Jenkins"
                     git status
-                    git config --local user.name 'Jenkins Build Server'
-                    git push origin $BRANCH_NAME
+                    git config --global push.default current
+                    git push --set-upstream origin $BRANCH_NAME
                 ''')
             }
         }
