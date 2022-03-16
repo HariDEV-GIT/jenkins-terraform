@@ -14,17 +14,18 @@ pipeline {
         }
         stage ("terraform format check") {
             steps {
-                sh('''
-                    terraform fmt
-                    git status
-                    echo $BRANCH_NAME
-                    git checkout $BRANCH_NAME
-                    git add *.tf
-                    git commit -am "Terraform fmt by Jenkins"
-                    git status
-                    git config --global push.default current
-                    git push --set-upstream origin $BRANCH_NAME
-                ''')
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'secrets', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRETS_ACCESS_KEY']]) {
+                    sh('''
+                        terraform fmt
+                        git status
+                        echo $BRANCH_NAME
+                        git checkout $BRANCH_NAME
+                        git add *.tf
+                        git commit -am "Terraform fmt by Jenkins"
+                        git status
+                        git push https://${AWS_ACCESS_KEY_ID}:${AWS_SECRETS_ACCESS_KEY}@github.com/HariDEV-GIT/jenkins-terraform.git $BRANCH_NAME
+                    ''')
+                }   
             }
         }
         stage ("terraform init") {
