@@ -23,8 +23,8 @@ pipeline {
                         git add *.tf
                         git commit -am "Terraform fmt by Jenkins"
                         git status
-                        git remote add origin https://${AWS_ACCESS_KEY_ID}:${AWS_SECRETS_ACCESS_KEY}@github.com/HariDEV-GIT/jenkins-terraform.git
-                        git push -u origin $BRANCH_NAME
+                        git remote add repo https://${AWS_ACCESS_KEY_ID}:${AWS_SECRETS_ACCESS_KEY}@github.com/HariDEV-GIT/jenkins-terraform.git
+                        git push -u repo $BRANCH_NAME
                     ''')
                 }   
             }
