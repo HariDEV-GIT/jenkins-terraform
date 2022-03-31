@@ -14,7 +14,7 @@ pipeline {
         }
         stage ("terraform format check") {
             steps {
-                withCredentials([usernamePassword(credentialsId: "secrets", usernameVariable: "AWS_ACCESS_KEY_ID", passwordVariable: "AWS_SECRETS_ACCESS_KEY"]) {
+                withCredentials([usernamePassword(credentialsId: "secrets", usernameVariable: "AWS_ACCESS_KEY_ID", passwordVariable: "AWS_SECRETS_ACCESS_KEY")]) {
                     sh('''
                         terraform fmt
                         git status
