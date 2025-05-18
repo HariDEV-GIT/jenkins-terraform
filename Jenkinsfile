@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ("checkout from GIT") {
             steps {
-                git branch: 'main', url: 'https://github.com/HariDEV-GIT/jenkins-terraform.git'
+                sh 'git --version'
             }
         }
         stage ("terraform init") {
