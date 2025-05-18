@@ -3,9 +3,6 @@ pipeline {
     options {
         disableConcurrentBuilds()
     }
-    tools {
-        terraform 'terraform'
-    }
     stages {
         stage ("checkout from GIT") {
             steps {
