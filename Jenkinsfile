@@ -4,9 +4,14 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
-        stage ("checkout from GIT") {
+        stage ("git version") {
             steps {
                 sh 'git --version'
+            }
+        }
+        stage ("terraform version") {
+            steps {
+                sh 'terraform --version'
             }
         }
         stage ("terraform init") {
